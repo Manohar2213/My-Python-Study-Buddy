@@ -1,0 +1,90 @@
+Python Programming Basics
+
+Variables and Data Types
+
+Python is a high-level programming language that uses dynamic typing. This means you don't need to declare the type of a variable before using it.
+
+Variables in Python:
+A variable is a name that refers to a value stored in memory. You can create a variable by assigning a value to it using the equals sign (=).
+
+Example:
+name = "Alice"
+age = 25
+height = 5.7
+is_student = True
+
+Python has several built-in data types:
+
+1. Numbers:
+   - int (integers): whole numbers like 42, -17, 0
+   - float (floating-point): decimal numbers like 3.14, -2.5, 0.0
+   - complex: complex numbers like 3+4j
+
+2. Strings:
+   - Text data enclosed in quotes
+   - Single quotes: 'Hello'
+   - Double quotes: "Hello"
+   - Triple quotes for multi-line strings: """Hello World"""
+
+3. Boolean:
+   - True or False values
+   - Used for logical operations
+
+4. None:
+   - Represents the absence of a value
+   - Similar to null in other languages
+
+Basic Operations:
+
+Arithmetic operators:
++ (addition)
+- (subtraction)
+* (multiplication)
+/ (division)
+// (floor division)
+% (modulus)
+** (exponentiation)
+
+Comparison operators:
+== (equal to)
+!= (not equal to)
+< (less than)
+> (greater than)
+<= (less than or equal to)
+>= (greater than or equal to)
+
+Logical operators:
+and (logical AND)
+or (logical OR)
+not (logical NOT)
+
+Comments in Python:
+Use the hash symbol (#) for single-line comments
+Use triple quotes for multi-line comments
+
+Example:
+# This is a single-line comment
+"""
+This is a
+multi-line comment
+"""
+
+Input and Output:
+Use input() function to get user input
+Use print() function to display output
+
+Example:
+name = input("Enter your name: ")
+print("Hello, " + name)
+
+Variable naming rules:
+- Must start with a letter or underscore
+- Can contain letters, numbers, and underscores
+- Case-sensitive
+- Cannot use Python keywords
+- Use descriptive names
+
+Python follows PEP 8 style guide for naming:
+- Use lowercase with underscores for variable names
+- Use UPPERCASE for constants
+- Use CamelCase for class names

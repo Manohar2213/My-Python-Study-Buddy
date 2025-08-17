@@ -1,0 +1,445 @@
+Python Error Handling and Exceptions
+
+Error handling allows your program to respond to exceptional circumstances during execution. Python uses try-except blocks to catch and handle errors gracefully.
+
+Types of Errors:
+
+1. Syntax Errors:
+These occur when Python cannot parse your code.
+# Missing colon
+if x > 5
+    print("x is greater than 5")
+
+# Incorrect indentation
+def my_function():
+print("Hello")
+
+2. Runtime Errors (Exceptions):
+These occur during program execution.
+
+Common Built-in Exceptions:
+
+ValueError - Invalid value for operation
+try:
+    number = int("not_a_number")
+except ValueError:
+    print("Cannot convert to integer")
+
+ZeroDivisionError - Division by zero
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+TypeError - Wrong data type for operation
+try:
+    result = "5" + 5
+except TypeError:
+    print("Cannot add string and integer")
+
+IndexError - List index out of range
+try:
+    my_list = [1, 2, 3]
+    print(my_list[5])
+except IndexError:
+    print("Index out of range")
+
+KeyError - Dictionary key not found
+try:
+    my_dict = {"a": 1, "b": 2}
+    print(my_dict["c"])
+except KeyError:
+    print("Key not found in dictionary")
+
+FileNotFoundError - File doesn't exist
+try:
+    with open("nonexistent.txt", "r") as file:
+        content = file.read()
+except FileNotFoundError:
+    print("File not found")
+
+Basic try-except Structure:
+
+Syntax:
+try:
+    # Code that might raise an exception
+    risky_operation()
+except ExceptionType:
+    # Code to handle the exception
+    handle_error()
+
+Examples:
+# Basic exception handling
+try:
+    age = int(input("Enter your age: "))
+    print(f"You are {age} years old")
+except ValueError:
+    print("Please enter a valid number")
+
+# Multiple exception types
+try:
+    numbers = [1, 2, 3]
+    index = int(input("Enter index: "))
+    print(numbers[index])
+except ValueError:
+    print("Please enter a valid number")
+except IndexError:
+    print("Index is out of range")
+
+# Catching multiple exceptions in one block
+try:
+    x = int(input("Enter a number: "))
+    result = 10 / x
+    print(f"Result: {result}")
+except (ValueError, ZeroDivisionError):
+    print("Invalid input or division by zero")
+
+try-except-else:
+The else block runs only if no exception occurs.
+
+try:
+    x = int(input("Enter a number: "))
+    result = 10 / x
+except ValueError:
+    print("Invalid number")
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+else:
+    print(f"Result: {result}")
+    print("Operation completed successfully")
+
+try-except-finally:
+The finally block always executes, regardless of exceptions.
+
+try:
+    file = open("data.txt", "r")
+    data = file.read()
+    print(data)
+except FileNotFoundError:
+    print("File not found")
+finally:
+    # This always runs
+    print("Cleanup operations")
+    if 'file' in locals() and not file.closed:
+        file.close()
+
+# Better approach using with statement
+try:
+    with open("data.txt", "r") as file:
+        data = file.read()
+        print(data)
+except FileNotFoundError:
+    print("File not found")
+
+Accessing Exception Information:
+
+# Get exception message
+try:
+    x = 1 / 0
+except ZeroDivisionError as e:
+    print(f"Error occurred: {e}")
+    print(f"Error type: {type(e).__name__}")
+
+# Multiple exception types with message
+try:
+    value = int(input("Enter number: "))
+    result = 10 / value
+except (ValueError, ZeroDivisionError) as e:
+    print(f"Error: {e}")
+    print(f"Error type: {type(e).__name__}")
+
+# Generic exception handler
+try:
+    risky_operation()
+except Exception as e:
+    print(f"An error occurred: {e}")
+    print(f"Error type: {type(e).__name__}")
+
+Raising Exceptions:
+You can raise exceptions manually using the raise statement.
+
+# Raise built-in exception
+def divide(a, b):
+    if b == 0:
+        raise ZeroDivisionError("Cannot divide by zero!")
+    return a / b
+
+try:
+    result = divide(10, 0)
+except ZeroDivisionError as e:
+    print(f"Error: {e}")
+
+# Raise with custom message
+def validate_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    if age > 150:
+        raise ValueError("Age seems unrealistic")
+    return True
+
+try:
+    validate_age(-5)
+except ValueError as e:
+    print(f"Validation error: {e}")
+
+# Re-raise current exception
+try:
+    x = 1 / 0
+except ZeroDivisionError:
+    print("Logging the error...")
+    raise  # Re-raises the same exception
+
+Custom Exceptions:
+Create your own exception classes for specific error conditions.
+
+# Basic custom exception
+class CustomError(Exception):
+    pass
+
+# Custom exception with message
+class InvalidEmailError(Exception):
+    def __init__(self, email):
+        self.email = email
+        super().__init__(f"Invalid email address: {email}")
+
+# Custom exception with additional attributes
+class InsufficientFundsError(Exception):
+    def __init__(self, balance, amount):
+        self.balance = balance
+        self.amount = amount
+        message = f"Cannot withdraw ${amount}. Balance: ${balance}"
+        super().__init__(message)
+
+# Using custom exceptions
+def validate_email(email):
+    if "@" not in email:
+        raise InvalidEmailError(email)
+    return True
+
+def withdraw_money(balance, amount):
+    if amount > balance:
+        raise InsufficientFundsError(balance, amount)
+    return balance - amount
+
+try:
+    validate_email("invalid-email")
+except InvalidEmailError as e:
+    print(f"Email validation failed: {e}")
+
+try:
+    new_balance = withdraw_money(100, 150)
+except InsufficientFundsError as e:
+    print(f"Transaction failed: {e}")
+    print(f"Available balance: ${e.balance}")
+
+Exception Hierarchy:
+Understanding Python's exception hierarchy helps in catching appropriate exceptions.
+
+BaseException
+ +-- SystemExit
+ +-- KeyboardInterrupt
+ +-- GeneratorExit
+ +-- Exception
+      +-- StopIteration
+      +-- ArithmeticError
+      |    +-- ZeroDivisionError
+      |    +-- OverflowError
+      +-- LookupError
+      |    +-- IndexError
+      |    +-- KeyError
+      +-- ValueError
+      +-- TypeError
+      +-- FileNotFoundError
+      ... and many more
+
+# Catching parent exceptions
+try:
+    my_list = [1, 2, 3]
+    print(my_list[10])
+except LookupError:  # Catches IndexError and KeyError
+    print("Lookup error occurred")
+
+Best Practices for Exception Handling:
+
+1. Be Specific with Exceptions:
+# Good - specific exception
+try:
+    age = int(user_input)
+except ValueError:
+    print("Please enter a valid number")
+
+# Avoid - too generic
+try:
+    age = int(user_input)
+except:  # Catches ALL exceptions
+    print("Something went wrong")
+
+2. Don't Ignore Exceptions:
+# Bad
+try:
+    risky_operation()
+except:
+    pass  # Silently ignoring errors
+
+# Better
+try:
+    risky_operation()
+except SpecificError as e:
+    logging.error(f"Expected error occurred: {e}")
+    # Handle appropriately
+
+3. Use Finally for Cleanup:
+try:
+    connection = database_connect()
+    process_data(connection)
+except DatabaseError as e:
+    print(f"Database error: {e}")
+finally:
+    if 'connection' in locals():
+        connection.close()
+
+4. Don't Use Exceptions for Flow Control:
+# Bad
+try:
+    return my_dict[key]
+except KeyError:
+    return default_value
+
+# Better
+return my_dict.get(key, default_value)
+
+Common Exception Handling Patterns:
+
+1. Input Validation:
+def get_positive_integer():
+    while True:
+        try:
+            value = int(input("Enter a positive integer: "))
+            if value <= 0:
+                raise ValueError("Number must be positive")
+            return value
+        except ValueError as e:
+            print(f"Invalid input: {e}. Please try again.")
+
+2. File Operations:
+def read_file_safely(filename):
+    try:
+        with open(filename, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"File {filename} not found")
+        return None
+    except PermissionError:
+        print(f"Permission denied for file {filename}")
+        return None
+    except Exception as e:
+        print(f"Unexpected error reading file: {e}")
+        return None
+
+3. Network Operations:
+import requests
+
+def fetch_data(url):
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()  # Raises HTTPError for bad status codes
+        return response.json()
+    except requests.exceptions.Timeout:
+        print("Request timed out")
+    except requests.exceptions.ConnectionError:
+        print("Connection error")
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP error: {e}")
+    except requests.exceptions.RequestException as e:
+        print(f"Request error: {e}")
+    return None
+
+4. Data Processing:
+def process_user_data(data):
+    try:
+        # Validate required fields
+        if 'name' not in data:
+            raise KeyError("Name is required")
+        if 'age' not in data:
+            raise KeyError("Age is required")
+        
+        # Process data
+        age = int(data['age'])
+        if age < 0:
+            raise ValueError("Age cannot be negative")
+        
+        return {
+            'name': data['name'].strip(),
+            'age': age,
+            'processed': True
+        }
+    except KeyError as e:
+        print(f"Missing required field: {e}")
+    except ValueError as e:
+        print(f"Invalid data: {e}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+    
+    return None
+
+Logging Exceptions:
+Use Python's logging module to record exceptions.
+
+import logging
+
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
+
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    logger.exception("Division by zero error occurred")
+    # This automatically includes the stack trace
+
+Context Managers and Exception Handling:
+Context managers automatically handle cleanup, even when exceptions occur.
+
+class DatabaseConnection:
+    def __enter__(self):
+        print("Connecting to database")
+        return self
+    
+    def __exit__(self, exc_type, exc_value, traceback):
+        print("Closing database connection")
+        if exc_type:
+            print(f"Exception occurred: {exc_type.__name__}")
+        return False  # Don't suppress exceptions
+
+# Usage
+try:
+    with DatabaseConnection() as db:
+        # Database operations
+        raise ValueError("Something went wrong")
+except ValueError as e:
+    print(f"Handled error: {e}")
+
+Assert Statements:
+Use for debugging and testing assumptions.
+
+def divide(a, b):
+    assert b != 0, "Divisor cannot be zero"
+    return a / b
+
+# This will raise AssertionError if b is 0
+try:
+    result = divide(10, 0)
+except AssertionError as e:
+    print(f"Assertion failed: {e}")
+
+# Assertions can be disabled with -O flag
+# python -O script.py
+
+Remember:
+- Handle exceptions at the appropriate level
+- Be specific about which exceptions you catch
+- Don't ignore exceptions silently
+- Use custom exceptions for domain-specific errors
+- Log exceptions for debugging
+- Clean up resources in finally blocks or use context managers
+- Test your exception handling code
+- Consider the user experience when displaying error messages

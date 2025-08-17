@@ -1,0 +1,264 @@
+Python Strings
+
+Strings are sequences of characters used to represent text in Python. They are immutable, meaning they cannot be changed after creation.
+
+Creating Strings:
+Strings can be created using single quotes, double quotes, or triple quotes.
+
+Examples:
+# Single quotes
+name = 'Alice'
+
+# Double quotes
+message = "Hello, World!"
+
+# Triple quotes for multi-line strings
+long_text = """This is a
+multi-line
+string"""
+
+# Triple quotes with single quotes
+another_text = '''This is also
+a multi-line string'''
+
+# Empty string
+empty = ""
+
+String Indexing and Slicing:
+Strings are indexed starting from 0.
+
+text = "Python"
+print(text[0])     # Output: P
+print(text[1])     # Output: y
+print(text[-1])    # Output: n (last character)
+print(text[-2])    # Output: o (second to last)
+
+# Slicing
+print(text[0:3])   # Output: Pyt
+print(text[:3])    # Output: Pyt
+print(text[3:])    # Output: hon
+print(text[::2])   # Output: Pto (every second character)
+print(text[::-1])  # Output: nohtyP (reverse string)
+
+String Methods:
+
+1. Case methods:
+text = "Hello World"
+print(text.upper())       # Output: HELLO WORLD
+print(text.lower())       # Output: hello world
+print(text.capitalize())  # Output: Hello world
+print(text.title())       # Output: Hello World
+print(text.swapcase())    # Output: hELLO wORLD
+
+2. Checking string content:
+text = "Hello123"
+print(text.isalpha())     # Output: False (contains numbers)
+print(text.isdigit())     # Output: False (contains letters)
+print(text.isalnum())     # Output: True (alphanumeric)
+print(text.isspace())     # Output: False (not whitespace)
+
+text2 = "hello"
+print(text2.islower())    # Output: True
+print(text2.isupper())    # Output: False
+
+3. Finding and counting:
+text = "Python programming is fun"
+print(text.find("pro"))         # Output: 7 (index of first occurrence)
+print(text.find("java"))        # Output: -1 (not found)
+print(text.index("pro"))        # Output: 7 (raises error if not found)
+print(text.count("o"))          # Output: 2
+print(text.count("prog"))       # Output: 1
+
+4. Replacing:
+text = "Hello World"
+print(text.replace("World", "Python"))  # Output: Hello Python
+print(text.replace("l", "L"))           # Output: HeLLo WorLd
+print(text.replace("l", "L", 2))        # Output: HeLLo World (replace first 2)
+
+5. Splitting and joining:
+text = "apple,banana,cherry"
+fruits = text.split(",")
+print(fruits)  # Output: ["apple", "banana", "cherry"]
+
+sentence = "Hello world python"
+words = sentence.split()  # Split by whitespace
+print(words)  # Output: ["Hello", "world", "python"]
+
+# Joining
+fruits = ["apple", "banana", "cherry"]
+result = ",".join(fruits)
+print(result)  # Output: apple,banana,cherry
+
+separator = " - "
+result2 = separator.join(fruits)
+print(result2)  # Output: apple - banana - cherry
+
+6. Trimming whitespace:
+text = "  Hello World  "
+print(text.strip())    # Output: Hello World
+print(text.lstrip())   # Output: Hello World   (left strip)
+print(text.rstrip())   # Output:   Hello World (right strip)
+
+# Remove specific characters
+text2 = "...Hello World..."
+print(text2.strip("."))  # Output: Hello World
+
+7. Checking start/end:
+text = "Python programming"
+print(text.startswith("Py"))      # Output: True
+print(text.startswith("Java"))    # Output: False
+print(text.endswith("ing"))       # Output: True
+print(text.endswith("ed"))        # Output: False
+
+String Formatting:
+
+1. f-strings (Python 3.6+) - Recommended:
+name = "Alice"
+age = 30
+message = f"Hello, my name is {name} and I am {age} years old"
+print(message)  # Output: Hello, my name is Alice and I am 30 years old
+
+# With expressions
+x = 10
+y = 5
+result = f"The sum of {x} and {y} is {x + y}"
+print(result)  # Output: The sum of 10 and 5 is 15
+
+# With formatting
+pi = 3.14159
+print(f"Pi rounded to 2 decimal places: {pi:.2f}")  # Output: Pi rounded to 2 decimal places: 3.14
+
+2. format() method:
+name = "Bob"
+age = 25
+message = "Hello, my name is {} and I am {} years old".format(name, age)
+print(message)
+
+# With named placeholders
+message = "Hello, my name is {name} and I am {age} years old".format(name=name, age=age)
+print(message)
+
+3. % formatting (older style):
+name = "Charlie"
+age = 35
+message = "Hello, my name is %s and I am %d years old" % (name, age)
+print(message)
+
+String Concatenation:
+
+1. Using + operator:
+first = "Hello"
+second = "World"
+result = first + " " + second
+print(result)  # Output: Hello World
+
+2. Using += operator:
+message = "Hello"
+message += " "
+message += "World"
+print(message)  # Output: Hello World
+
+3. Using join() for multiple strings:
+words = ["Python", "is", "awesome"]
+sentence = " ".join(words)
+print(sentence)  # Output: Python is awesome
+
+Escape Characters:
+Special characters in strings using backslash \.
+
+text = "He said, \"Hello!\""        # Output: He said, "Hello!"
+path = "C:\\Users\\Alice\\Documents" # Output: C:\Users\Alice\Documents
+line1 = "First line\nSecond line"   # Output: First line
+                                   #         Second line
+tab_text = "Name\tAge\tCity"        # Output: Name    Age    City
+
+Raw strings (ignore escape characters):
+path = r"C:\Users\Alice\Documents"
+print(path)  # Output: C:\Users\Alice\Documents
+
+String Comparison:
+Strings are compared lexicographically (alphabetically).
+
+print("apple" < "banana")    # Output: True
+print("Apple" < "apple")     # Output: True (uppercase comes first)
+print("10" < "9")           # Output: True (string comparison, not numeric)
+
+# Case-insensitive comparison
+str1 = "Hello"
+str2 = "hello"
+print(str1.lower() == str2.lower())  # Output: True
+
+Checking for Substrings:
+text = "Python programming"
+print("prog" in text)        # Output: True
+print("java" in text)        # Output: False
+print("PROG" not in text)    # Output: True
+
+String Length:
+text = "Hello World"
+print(len(text))  # Output: 11
+
+Iterating Through Strings:
+text = "Python"
+
+# Character by character
+for char in text:
+    print(char)
+
+# With index
+for i, char in enumerate(text):
+    print(f"Index {i}: {char}")
+
+Common String Operations:
+
+1. Reversing a string:
+text = "Python"
+reversed_text = text[::-1]
+print(reversed_text)  # Output: nohtyP
+
+2. Checking if string is palindrome:
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
+
+print(is_palindrome("A man a plan a canal Panama"))  # Output: True
+
+3. Counting vowels:
+def count_vowels(text):
+    vowels = "aeiouAEIOU"
+    count = 0
+    for char in text:
+        if char in vowels:
+            count += 1
+    return count
+
+print(count_vowels("Hello World"))  # Output: 3
+
+4. Title case conversion:
+text = "hello world python"
+title_case = text.title()
+print(title_case)  # Output: Hello World Python
+
+# Or manually
+def to_title_case(text):
+    words = text.split()
+    return " ".join(word.capitalize() for word in words)
+
+String Immutability:
+Strings cannot be modified in place.
+
+text = "Hello"
+# text[0] = "h"  # This would cause an error!
+
+# Instead, create a new string
+text = "h" + text[1:]
+print(text)  # Output: hello
+
+Best Practices:
+1. Use f-strings for string formatting (Python 3.6+)
+2. Use meaningful variable names for strings
+3. Consider using raw strings for file paths and regex patterns
+4. Use triple quotes for multi-line strings and docstrings
+5. Be mindful of string immutability when doing many concatenations
+6. Use appropriate string methods for cleaning and processing text
+7. Remember that string comparison is case-sensitive

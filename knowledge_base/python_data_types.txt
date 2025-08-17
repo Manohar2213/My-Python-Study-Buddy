@@ -1,0 +1,153 @@
+Python Data Types and Data Structures
+
+Python has several built-in data structures that help organize and store data efficiently.
+
+Lists:
+Lists are ordered, mutable collections that can store different data types.
+
+Creating lists:
+fruits = ["apple", "banana", "cherry"]
+numbers = [1, 2, 3, 4, 5]
+mixed = [1, "hello", 3.14, True]
+empty_list = []
+
+List operations:
+- Accessing elements: fruits[0]  # Returns "apple"
+- Negative indexing: fruits[-1]  # Returns last element
+- Slicing: fruits[1:3]  # Returns elements from index 1 to 2
+- Length: len(fruits)
+- Adding elements: fruits.append("orange")
+- Inserting: fruits.insert(1, "grape")
+- Removing: fruits.remove("banana")
+- Popping: fruits.pop()  # Removes and returns last element
+- Checking membership: "apple" in fruits
+
+List methods:
+- append(): adds element to end
+- extend(): adds all elements from another list
+- insert(): inserts element at specific position
+- remove(): removes first occurrence of element
+- pop(): removes and returns element at index
+- clear(): removes all elements
+- index(): returns index of first occurrence
+- count(): returns number of occurrences
+- sort(): sorts the list
+- reverse(): reverses the list
+
+Tuples:
+Tuples are ordered, immutable collections.
+
+Creating tuples:
+coordinates = (3, 4)
+colors = ("red", "green", "blue")
+single_item = (42,)  # Note the comma
+empty_tuple = ()
+
+Tuple operations:
+- Accessing elements: coordinates[0]
+- Slicing: colors[1:3]
+- Length: len(coordinates)
+- Checking membership: "red" in colors
+- Unpacking: x, y = coordinates
+
+Tuples are immutable - you cannot change their contents after creation.
+
+Dictionaries:
+Dictionaries are unordered collections of key-value pairs.
+
+Creating dictionaries:
+person = {"name": "Alice", "age": 30, "city": "New York"}
+empty_dict = {}
+using_dict = dict(name="Bob", age=25)
+
+Dictionary operations:
+- Accessing values: person["name"]
+- Adding/updating: person["email"] = "alice@email.com"
+- Removing: del person["age"]
+- Getting keys: person.keys()
+- Getting values: person.values()
+- Getting items: person.items()
+- Checking membership: "name" in person
+
+Dictionary methods:
+- get(): returns value for key, or default if not found
+- pop(): removes and returns value for key
+- popitem(): removes and returns last key-value pair
+- clear(): removes all items
+- copy(): creates shallow copy
+- update(): updates with another dictionary
+
+Sets:
+Sets are unordered collections of unique elements.
+
+Creating sets:
+fruits = {"apple", "banana", "cherry"}
+numbers = {1, 2, 3, 4, 5}
+empty_set = set()  # Note: {} creates empty dict, not set
+
+Set operations:
+- Adding elements: fruits.add("orange")
+- Removing: fruits.remove("banana")  # Raises error if not found
+- Discarding: fruits.discard("banana")  # No error if not found
+- Union: set1 | set2 or set1.union(set2)
+- Intersection: set1 & set2 or set1.intersection(set2)
+- Difference: set1 - set2 or set1.difference(set2)
+
+String Operations:
+Strings are immutable sequences of characters.
+
+String methods:
+- lower(): converts to lowercase
+- upper(): converts to uppercase
+- strip(): removes whitespace from ends
+- split(): splits string into list
+- join(): joins list elements into string
+- replace(): replaces substring
+- find(): finds index of substring
+- startswith(): checks if starts with substring
+- endswith(): checks if ends with substring
+- isdigit(): checks if all characters are digits
+- isalpha(): checks if all characters are letters
+
+String formatting:
+name = "Alice"
+age = 30
+
+# f-strings (Python 3.6+)
+message = f"Hello, {name}! You are {age} years old."
+
+# format() method
+message = "Hello, {}! You are {} years old.".format(name, age)
+
+# % formatting (older style)
+message = "Hello, %s! You are %d years old." % (name, age)
+
+Type Conversion:
+- str(): converts to string
+- int(): converts to integer
+- float(): converts to float
+- list(): converts to list
+- tuple(): converts to tuple
+- set(): converts to set
+- dict(): converts to dictionary
+
+Examples:
+number_str = "42"
+number_int = int(number_str)
+number_float = float(number_str)
+
+list_from_string = list("hello")  # ['h', 'e', 'l', 'l', 'o']
+tuple_from_list = tuple([1, 2, 3])  # (1, 2, 3)
+
+Common Patterns:
+- List comprehensions: [x**2 for x in range(10)]
+- Dictionary comprehensions: {x: x**2 for x in range(5)}
+- Set comprehensions: {x for x in range(10) if x % 2 == 0}
+
+Checking data types:
+- type(): returns the exact type
+- isinstance(): checks if object is instance of type
+
+Examples:
+print(type([1, 2, 3]))  # <class 'list'>
+print(isinstance([1, 2, 3], list))  # True

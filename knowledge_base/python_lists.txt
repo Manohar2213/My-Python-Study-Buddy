@@ -1,0 +1,217 @@
+Python Lists
+
+A list is a collection of items that are ordered, changeable, and allow duplicate values. Lists are one of the most commonly used data structures in Python.
+
+Creating Lists:
+Lists are created using square brackets [].
+
+Examples:
+# Empty list
+my_list = []
+
+# List with items
+fruits = ["apple", "banana", "cherry"]
+numbers = [1, 2, 3, 4, 5]
+mixed = ["hello", 42, True, 3.14]
+
+# List with duplicates
+colors = ["red", "blue", "red", "green"]
+
+Accessing List Items:
+Use index numbers to access items. Python uses zero-based indexing.
+
+fruits = ["apple", "banana", "cherry"]
+print(fruits[0])    # Output: apple
+print(fruits[1])    # Output: banana
+print(fruits[-1])   # Output: cherry (last item)
+print(fruits[-2])   # Output: banana (second to last)
+
+List Slicing:
+Extract a portion of the list using slicing.
+
+numbers = [0, 1, 2, 3, 4, 5]
+print(numbers[1:4])    # Output: [1, 2, 3]
+print(numbers[:3])     # Output: [0, 1, 2]
+print(numbers[2:])     # Output: [2, 3, 4, 5]
+print(numbers[::2])    # Output: [0, 2, 4] (every second item)
+
+Modifying Lists:
+Lists are mutable, meaning you can change their content.
+
+# Change item by index
+fruits = ["apple", "banana", "cherry"]
+fruits[1] = "orange"
+print(fruits)  # Output: ["apple", "orange", "cherry"]
+
+# Change multiple items
+fruits[0:2] = ["mango", "pineapple"]
+print(fruits)  # Output: ["mango", "pineapple", "cherry"]
+
+Adding Items to Lists:
+
+1. append() - adds item to the end
+fruits = ["apple", "banana"]
+fruits.append("cherry")
+print(fruits)  # Output: ["apple", "banana", "cherry"]
+
+2. insert() - adds item at specific position
+fruits.insert(1, "orange")
+print(fruits)  # Output: ["apple", "orange", "banana", "cherry"]
+
+3. extend() - adds multiple items from another iterable
+more_fruits = ["mango", "grape"]
+fruits.extend(more_fruits)
+print(fruits)  # Output: ["apple", "orange", "banana", "cherry", "mango", "grape"]
+
+Removing Items from Lists:
+
+1. remove() - removes first occurrence of specified value
+fruits = ["apple", "banana", "cherry", "banana"]
+fruits.remove("banana")
+print(fruits)  # Output: ["apple", "cherry", "banana"]
+
+2. pop() - removes item at specified index (or last if no index given)
+fruits = ["apple", "banana", "cherry"]
+removed = fruits.pop(1)
+print(fruits)   # Output: ["apple", "cherry"]
+print(removed)  # Output: banana
+
+last_item = fruits.pop()
+print(last_item)  # Output: cherry
+
+3. del - deletes item at specified index
+fruits = ["apple", "banana", "cherry"]
+del fruits[0]
+print(fruits)  # Output: ["banana", "cherry"]
+
+4. clear() - empties the list
+fruits.clear()
+print(fruits)  # Output: []
+
+List Methods:
+
+1. len() - get number of items
+numbers = [1, 2, 3, 4, 5]
+print(len(numbers))  # Output: 5
+
+2. count() - count occurrences of a value
+numbers = [1, 2, 2, 3, 2]
+print(numbers.count(2))  # Output: 3
+
+3. index() - find index of first occurrence
+fruits = ["apple", "banana", "cherry"]
+print(fruits.index("banana"))  # Output: 1
+
+4. sort() - sort the list
+numbers = [3, 1, 4, 1, 5]
+numbers.sort()
+print(numbers)  # Output: [1, 1, 3, 4, 5]
+
+# Sort in descending order
+numbers.sort(reverse=True)
+print(numbers)  # Output: [5, 4, 3, 1, 1]
+
+5. reverse() - reverse the list
+fruits = ["apple", "banana", "cherry"]
+fruits.reverse()
+print(fruits)  # Output: ["cherry", "banana", "apple"]
+
+6. copy() - create a copy of the list
+original = [1, 2, 3]
+copy_list = original.copy()
+print(copy_list)  # Output: [1, 2, 3]
+
+Checking if Item Exists:
+Use 'in' keyword to check if item exists in list.
+
+fruits = ["apple", "banana", "cherry"]
+if "banana" in fruits:
+    print("Yes, banana is in the list")
+
+List Comprehensions:
+Create new lists based on existing lists.
+
+# Basic list comprehension
+numbers = [1, 2, 3, 4, 5]
+squares = [x**2 for x in numbers]
+print(squares)  # Output: [1, 4, 9, 16, 25]
+
+# With condition
+even_squares = [x**2 for x in numbers if x % 2 == 0]
+print(even_squares)  # Output: [4, 16]
+
+# With string manipulation
+fruits = ["apple", "banana", "cherry"]
+uppercase = [fruit.upper() for fruit in fruits]
+print(uppercase)  # Output: ["APPLE", "BANANA", "CHERRY"]
+
+Nested Lists:
+Lists can contain other lists.
+
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(matrix[0])     # Output: [1, 2, 3]
+print(matrix[0][1])  # Output: 2
+
+# Creating nested lists
+nested = []
+for i in range(3):
+    nested.append([])
+    for j in range(3):
+        nested[i].append(i * 3 + j)
+print(nested)  # Output: [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+
+Common List Operations:
+
+1. Concatenation
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+combined = list1 + list2
+print(combined)  # Output: [1, 2, 3, 4, 5, 6]
+
+2. Repetition
+repeated = [0] * 5
+print(repeated)  # Output: [0, 0, 0, 0, 0]
+
+3. Membership testing
+numbers = [1, 2, 3, 4, 5]
+print(3 in numbers)     # Output: True
+print(6 not in numbers) # Output: True
+
+4. Finding min/max
+numbers = [5, 2, 8, 1, 9]
+print(min(numbers))  # Output: 1
+print(max(numbers))  # Output: 9
+print(sum(numbers))  # Output: 25
+
+Common List Patterns:
+
+1. Iterating through a list
+for item in fruits:
+    print(item)
+
+2. Iterating with index
+for i, item in enumerate(fruits):
+    print(f"{i}: {item}")
+
+3. Creating a list from range
+numbers = list(range(1, 6))
+print(numbers)  # Output: [1, 2, 3, 4, 5]
+
+4. Filtering a list
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+even_numbers = [x for x in numbers if x % 2 == 0]
+print(even_numbers)  # Output: [2, 4, 6, 8, 10]
+
+Lists vs Other Data Types:
+- Lists are ordered (maintain insertion order)
+- Lists are mutable (can be changed)
+- Lists allow duplicates
+- Lists use square brackets []
+- Lists are indexed starting from 0
+
+Best Practices:
+1. Use meaningful variable names for lists
+2. Be careful when modifying lists while iterating
+3. Use list comprehensions for simple transformations
+4. Consider using enumerate() when you need both index and value
+5. Remember that lists are mutable - changes affect all references

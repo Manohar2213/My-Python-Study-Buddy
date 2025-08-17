@@ -1,0 +1,393 @@
+Python Modules and Packages
+
+A module is a file containing Python definitions and statements. Modules help organize code into separate files and allow code reuse across different programs.
+
+Creating a Module:
+A module is simply a Python file with a .py extension.
+
+Example - Create a file named 'math_operations.py':
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+PI = 3.14159
+
+def circle_area(radius):
+    return PI * radius ** 2
+
+Importing Modules:
+
+1. Import entire module:
+import math_operations
+
+result = math_operations.add(5, 3)
+print(result)  # Output: 8
+
+area = math_operations.circle_area(5)
+print(area)  # Output: 78.53975
+
+2. Import specific functions:
+from math_operations import add, subtract
+
+result = add(10, 5)
+difference = subtract(10, 5)
+print(result, difference)  # Output: 15 5
+
+3. Import with alias:
+import math_operations as math_ops
+
+result = math_ops.multiply(4, 5)
+print(result)  # Output: 20
+
+# Import specific function with alias
+from math_operations import circle_area as area
+
+print(area(3))  # Output: 28.274
+
+4. Import all (use sparingly):
+from math_operations import *
+
+# Now you can use all functions directly
+result = add(1, 2)
+pi_value = PI
+
+Built-in Modules:
+Python comes with many built-in modules.
+
+1. math module:
+import math
+
+print(math.pi)        # Output: 3.141592653589793
+print(math.sqrt(16))  # Output: 4.0
+print(math.ceil(4.3)) # Output: 5
+print(math.floor(4.7)) # Output: 4
+print(math.sin(math.pi / 2))  # Output: 1.0
+
+# Constants
+print(math.e)    # Euler's number
+print(math.inf)  # Infinity
+print(math.nan)  # Not a number
+
+2. random module:
+import random
+
+# Random integer
+print(random.randint(1, 10))  # Random integer between 1 and 10
+
+# Random float
+print(random.random())  # Random float between 0 and 1
+print(random.uniform(1, 10))  # Random float between 1 and 10
+
+# Random choice
+colors = ["red", "blue", "green", "yellow"]
+print(random.choice(colors))  # Random color
+
+# Shuffle list
+numbers = [1, 2, 3, 4, 5]
+random.shuffle(numbers)
+print(numbers)  # Shuffled list
+
+3. datetime module:
+import datetime
+
+# Current date and time
+now = datetime.datetime.now()
+print(now)  # Output: 2024-01-15 14:30:25.123456
+
+# Current date
+today = datetime.date.today()
+print(today)  # Output: 2024-01-15
+
+# Specific date
+birthday = datetime.date(1990, 5, 15)
+print(birthday)  # Output: 1990-05-15
+
+# Formatting dates
+formatted = now.strftime("%Y-%m-%d %H:%M")
+print(formatted)  # Output: 2024-01-15 14:30
+
+4. os module:
+import os
+
+# Current working directory
+print(os.getcwd())
+
+# List directory contents
+print(os.listdir('.'))
+
+# Create directory
+# os.mkdir('new_folder')
+
+# Check if file exists
+if os.path.exists('myfile.txt'):
+    print("File exists")
+
+# Environment variables
+print(os.environ.get('PATH'))
+
+5. sys module:
+import sys
+
+# Python version
+print(sys.version)
+
+# Command line arguments
+print(sys.argv)
+
+# Exit program
+# sys.exit()
+
+Module Search Path:
+Python looks for modules in specific locations.
+
+import sys
+print(sys.path)  # Shows where Python looks for modules
+
+# Add custom path
+sys.path.append('/path/to/custom/modules')
+
+The __name__ Variable:
+Every module has a __name__ variable.
+
+# In math_operations.py
+def add(a, b):
+    return a + b
+
+if __name__ == "__main__":
+    # This code only runs when the module is executed directly
+    print("Testing the add function:")
+    result = add(2, 3)
+    print(f"2 + 3 = {result}")
+
+# When imported: __name__ is "math_operations"
+# When run directly: __name__ is "__main__"
+
+Creating Packages:
+A package is a directory containing multiple modules.
+
+Directory structure:
+my_package/
+    __init__.py
+    math_ops.py
+    string_ops.py
+    utilities/
+        __init__.py
+        helpers.py
+
+Example __init__.py:
+# my_package/__init__.py
+from .math_ops import add, subtract
+from .string_ops import reverse_string
+
+__all__ = ["add", "subtract", "reverse_string"]
+
+Using packages:
+# Import from package
+from my_package import add
+from my_package.utilities import helpers
+
+# Import entire package
+import my_package
+
+Module Documentation:
+Use docstrings to document your modules.
+
+"""
+This module provides basic mathematical operations.
+
+Functions:
+    add(a, b): Returns the sum of a and b
+    subtract(a, b): Returns the difference of a and b
+"""
+
+def add(a, b):
+    """
+    Add two numbers together.
+    
+    Args:
+        a (int/float): First number
+        b (int/float): Second number
+    
+    Returns:
+        int/float: Sum of a and b
+    """
+    return a + b
+
+Checking Module Contents:
+Use dir() to see what's available in a module.
+
+import math
+print(dir(math))  # Lists all functions and constants in math module
+
+# Help on specific function
+help(math.sqrt)
+
+# Check if module has specific attribute
+if hasattr(math, 'pi'):
+    print("Math module has pi constant")
+
+Reloading Modules:
+In interactive sessions, you might need to reload modified modules.
+
+import importlib
+import my_module
+
+# After modifying my_module.py
+importlib.reload(my_module)
+
+Common Standard Library Modules:
+
+1. json - JSON data handling:
+import json
+
+data = {"name": "Alice", "age": 30}
+json_string = json.dumps(data)
+print(json_string)  # Output: {"name": "Alice", "age": 30}
+
+parsed_data = json.loads(json_string)
+print(parsed_data["name"])  # Output: Alice
+
+2. urllib - URL handling:
+from urllib.request import urlopen
+from urllib.parse import urljoin
+
+# Note: This is just an example, actual use depends on your needs
+
+3. collections - Specialized data structures:
+from collections import Counter, defaultdict
+
+# Counter
+words = ["apple", "banana", "apple", "cherry", "banana", "apple"]
+count = Counter(words)
+print(count)  # Output: Counter({'apple': 3, 'banana': 2, 'cherry': 1})
+
+# defaultdict
+dd = defaultdict(list)
+dd['key1'].append('value1')  # No KeyError
+
+4. itertools - Iterator functions:
+import itertools
+
+# Combinations
+items = ['A', 'B', 'C']
+combinations = list(itertools.combinations(items, 2))
+print(combinations)  # Output: [('A', 'B'), ('A', 'C'), ('B', 'C')]
+
+# Cycle
+colors = ['red', 'blue', 'green']
+color_cycle = itertools.cycle(colors)
+# Infinite iterator: red, blue, green, red, blue, green, ...
+
+Module Best Practices:
+
+1. Use descriptive module names:
+# Good
+user_authentication.py
+data_processing.py
+
+# Avoid
+utils.py
+misc.py
+
+2. Keep modules focused:
+Each module should have a single, well-defined purpose.
+
+3. Use __all__ to control imports:
+# In your module
+__all__ = ['function1', 'function2', 'CONSTANT']
+
+4. Avoid circular imports:
+# Don't let module A import module B if B imports A
+
+5. Use relative imports in packages:
+# Inside a package
+from .other_module import function
+from ..parent_package import something
+
+6. Document your modules:
+Always include docstrings explaining what the module does.
+
+Creating Installable Packages:
+For distribution, create a setup.py file.
+
+# setup.py
+from setuptools import setup, find_packages
+
+setup(
+    name="my-package",
+    version="1.0.0",
+    packages=find_packages(),
+    install_requires=[
+        "requests",
+        "numpy",
+    ],
+    author="Your Name",
+    description="A sample Python package",
+)
+
+Installing third-party packages:
+# Using pip
+pip install requests
+pip install numpy==1.21.0
+pip install -e .  # Install current directory as editable package
+
+Virtual Environments:
+Isolate package dependencies for different projects.
+
+# Create virtual environment
+python -m venv myenv
+
+# Activate (Windows)
+myenv\Scripts\activate
+
+# Activate (Unix/macOS)
+source myenv/bin/activate
+
+# Install packages
+pip install requests
+
+# Deactivate
+deactivate
+
+Common Module Patterns:
+
+1. Configuration module:
+# config.py
+DATABASE_URL = "sqlite:///app.db"
+SECRET_KEY = "your-secret-key"
+DEBUG = True
+
+# main.py
+import config
+print(config.DATABASE_URL)
+
+2. Utility module:
+# utils.py
+def format_currency(amount):
+    return f"${amount:.2f}"
+
+def validate_email(email):
+    return "@" in email and "." in email
+
+3. Constants module:
+# constants.py
+MAX_RETRY_COUNT = 3
+DEFAULT_TIMEOUT = 30
+ERROR_MESSAGES = {
+    'invalid_input': 'Please enter valid input',
+    'network_error': 'Network connection failed'
+}
+
+Remember:
+- Modules help organize and reuse code
+- Python has a rich standard library
+- Use import statements to access module functionality
+- Create packages for larger projects
+- Document your modules well
+- Follow Python naming conventions
+- Use virtual environments for project isolation

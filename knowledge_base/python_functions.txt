@@ -1,0 +1,132 @@
+Python Functions
+
+A function is a block of organized, reusable code that performs a specific task. Functions help make code more modular and easier to understand.
+
+Defining Functions:
+Use the 'def' keyword followed by the function name and parentheses.
+
+Basic syntax:
+def function_name():
+    # function body
+    return value  # optional
+
+Example:
+def greet():
+    print("Hello, World!")
+
+# Call the function
+greet()
+
+Functions with Parameters:
+Parameters are variables that accept values when the function is called.
+
+def greet_person(name):
+    print(f"Hello, {name}!")
+
+# Call with argument
+greet_person("Alice")
+
+Functions with Multiple Parameters:
+def add_numbers(a, b):
+    result = a + b
+    return result
+
+# Call the function
+sum_result = add_numbers(5, 3)
+print(sum_result)  # Output: 8
+
+Default Parameters:
+You can provide default values for parameters.
+
+def greet_with_title(name, title="Mr."):
+    print(f"Hello, {title} {name}!")
+
+greet_with_title("Smith")  # Uses default title
+greet_with_title("Smith", "Dr.")  # Uses provided title
+
+Return Statement:
+The return statement exits a function and optionally passes back a value.
+
+def multiply(x, y):
+    return x * y
+
+result = multiply(4, 5)
+print(result)  # Output: 20
+
+Functions without return statement return None by default.
+
+Variable Scope:
+- Local variables: defined inside a function, only accessible within that function
+- Global variables: defined outside functions, accessible throughout the program
+
+def my_function():
+    local_var = 10  # Local variable
+    print(local_var)
+
+global_var = 20  # Global variable
+
+def another_function():
+    print(global_var)  # Can access global variable
+
+Keyword Arguments:
+You can call functions using keyword arguments.
+
+def describe_pet(name, animal_type="dog"):
+    print(f"I have a {animal_type} named {name}")
+
+describe_pet(name="Buddy", animal_type="cat")
+describe_pet("Max")  # Uses default animal_type
+
+Arbitrary Arguments:
+Use *args for variable number of positional arguments
+Use **kwargs for variable number of keyword arguments
+
+def sum_all(*numbers):
+    return sum(numbers)
+
+result = sum_all(1, 2, 3, 4, 5)
+
+def print_info(**info):
+    for key, value in info.items():
+        print(f"{key}: {value}")
+
+print_info(name="Alice", age=25, city="New York")
+
+Lambda Functions:
+Small anonymous functions defined with the lambda keyword.
+
+square = lambda x: x ** 2
+print(square(5))  # Output: 25
+
+# Often used with built-in functions
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, numbers))
+
+Built-in Functions:
+Python provides many built-in functions:
+- len(): returns length of an object
+- max(): returns maximum value
+- min(): returns minimum value
+- sum(): returns sum of iterable
+- abs(): returns absolute value
+- round(): rounds a number
+- type(): returns type of object
+- str(): converts to string
+- int(): converts to integer
+- float(): converts to float
+
+Function Documentation:
+Use docstrings to document your functions.
+
+def calculate_area(radius):
+    """
+    Calculate the area of a circle.
+    
+    Args:
+        radius (float): The radius of the circle
+        
+    Returns:
+        float: The area of the circle
+    """
+    import math
+    return math.pi * radius ** 2

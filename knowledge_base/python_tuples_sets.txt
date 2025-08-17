@@ -1,0 +1,306 @@
+Python Tuples and Sets
+
+TUPLES
+
+A tuple is a collection of items that are ordered, unchangeable (immutable), and allow duplicate values. Tuples are similar to lists but cannot be modified after creation.
+
+Creating Tuples:
+Tuples are created using parentheses () or the tuple() constructor.
+
+Examples:
+# Empty tuple
+empty_tuple = ()
+# or
+empty_tuple = tuple()
+
+# Tuple with items
+fruits = ("apple", "banana", "cherry")
+numbers = (1, 2, 3, 4, 5)
+mixed = ("hello", 42, True, 3.14)
+
+# Single item tuple (note the comma!)
+single = ("apple",)  # Without comma, it's just a string in parentheses
+# or
+single = tuple(["apple"])
+
+# Tuple without parentheses (tuple packing)
+coordinates = 10, 20
+print(type(coordinates))  # Output: <class 'tuple'>
+
+Accessing Tuple Items:
+Use index numbers to access items (same as lists).
+
+fruits = ("apple", "banana", "cherry")
+print(fruits[0])    # Output: apple
+print(fruits[1])    # Output: banana
+print(fruits[-1])   # Output: cherry (last item)
+
+# Slicing
+numbers = (0, 1, 2, 3, 4, 5)
+print(numbers[1:4])    # Output: (1, 2, 3)
+print(numbers[:3])     # Output: (0, 1, 2)
+print(numbers[2:])     # Output: (2, 3, 4, 5)
+
+Tuple Unpacking:
+Extract values from a tuple into variables.
+
+# Basic unpacking
+person = ("Alice", 30, "Engineer")
+name, age, job = person
+print(name)  # Output: Alice
+print(age)   # Output: 30
+print(job)   # Output: Engineer
+
+# Partial unpacking with *
+numbers = (1, 2, 3, 4, 5)
+first, second, *rest = numbers
+print(first)   # Output: 1
+print(second)  # Output: 2
+print(rest)    # Output: [3, 4, 5]
+
+# Swapping variables
+a = 10
+b = 20
+a, b = b, a
+print(a, b)  # Output: 20 10
+
+Tuple Methods:
+
+1. count() - count occurrences of a value
+numbers = (1, 2, 2, 3, 2, 4)
+print(numbers.count(2))  # Output: 3
+
+2. index() - find index of first occurrence
+fruits = ("apple", "banana", "cherry", "banana")
+print(fruits.index("banana"))  # Output: 1
+
+Tuple Operations:
+
+1. Length
+fruits = ("apple", "banana", "cherry")
+print(len(fruits))  # Output: 3
+
+2. Membership testing
+print("banana" in fruits)     # Output: True
+print("grape" not in fruits)  # Output: True
+
+3. Concatenation
+tuple1 = (1, 2, 3)
+tuple2 = (4, 5, 6)
+combined = tuple1 + tuple2
+print(combined)  # Output: (1, 2, 3, 4, 5, 6)
+
+4. Repetition
+repeated = ("a",) * 5
+print(repeated)  # Output: ('a', 'a', 'a', 'a', 'a')
+
+5. Comparison
+print((1, 2, 3) < (1, 2, 4))  # Output: True
+print((1, 2) < (1, 2, 0))     # Output: True
+
+Iterating Through Tuples:
+coordinates = (10, 20, 30)
+
+for coord in coordinates:
+    print(coord)
+
+# With index
+for i, coord in enumerate(coordinates):
+    print(f"Index {i}: {coord}")
+
+When to Use Tuples:
+1. When you need an unchangeable collection
+2. For coordinates (x, y, z)
+3. RGB color values
+4. Database records
+5. Function return values (multiple values)
+6. Dictionary keys (tuples are hashable, lists are not)
+
+SETS
+
+A set is a collection of items that are unordered, unchangeable (individual items), and do not allow duplicate values. Sets are useful for storing unique items and performing mathematical set operations.
+
+Creating Sets:
+Sets are created using curly braces {} or the set() constructor.
+
+Examples:
+# Empty set (must use set(), not {})
+empty_set = set()
+
+# Set with items
+fruits = {"apple", "banana", "cherry"}
+numbers = {1, 2, 3, 4, 5}
+mixed = {"hello", 42, True}
+
+# Set from list (removes duplicates)
+numbers_list = [1, 2, 2, 3, 3, 4, 5]
+unique_numbers = set(numbers_list)
+print(unique_numbers)  # Output: {1, 2, 3, 4, 5}
+
+# Set from string
+letters = set("hello")
+print(letters)  # Output: {'h', 'e', 'l', 'o'}
+
+Adding Items to Sets:
+
+1. add() - adds a single item
+fruits = {"apple", "banana"}
+fruits.add("cherry")
+print(fruits)  # Output: {"apple", "banana", "cherry"}
+
+2. update() - adds multiple items
+fruits.update(["orange", "grape"])
+print(fruits)  # Output: {"apple", "banana", "cherry", "orange", "grape"}
+
+# Can update from any iterable
+fruits.update("kiwi")  # Adds individual characters
+print(fruits)  # Output: {"apple", "banana", "cherry", "orange", "grape", "k", "i", "w"}
+
+Removing Items from Sets:
+
+1. remove() - removes specified item (raises error if not found)
+fruits = {"apple", "banana", "cherry"}
+fruits.remove("banana")
+print(fruits)  # Output: {"apple", "cherry"}
+
+2. discard() - removes specified item (no error if not found)
+fruits.discard("grape")  # No error even though grape is not in set
+fruits.discard("apple")
+print(fruits)  # Output: {"cherry"}
+
+3. pop() - removes random item
+fruits = {"apple", "banana", "cherry"}
+removed = fruits.pop()
+print(f"Removed: {removed}")
+print(fruits)
+
+4. clear() - empties the set
+fruits.clear()
+print(fruits)  # Output: set()
+
+Set Operations:
+
+1. Union (|) - items in either set
+set1 = {1, 2, 3}
+set2 = {3, 4, 5}
+union = set1 | set2
+print(union)  # Output: {1, 2, 3, 4, 5}
+
+# Or using union() method
+union = set1.union(set2)
+
+2. Intersection (&) - items in both sets
+intersection = set1 & set2
+print(intersection)  # Output: {3}
+
+# Or using intersection() method
+intersection = set1.intersection(set2)
+
+3. Difference (-) - items in first set but not in second
+difference = set1 - set2
+print(difference)  # Output: {1, 2}
+
+# Or using difference() method
+difference = set1.difference(set2)
+
+4. Symmetric difference (^) - items in either set, but not both
+sym_diff = set1 ^ set2
+print(sym_diff)  # Output: {1, 2, 4, 5}
+
+# Or using symmetric_difference() method
+sym_diff = set1.symmetric_difference(set2)
+
+Set Comparison:
+
+1. Subset
+set1 = {1, 2}
+set2 = {1, 2, 3, 4}
+print(set1.issubset(set2))    # Output: True
+print(set1 <= set2)           # Output: True
+
+2. Superset
+print(set2.issuperset(set1))  # Output: True
+print(set2 >= set1)           # Output: True
+
+3. Disjoint (no common elements)
+set3 = {5, 6, 7}
+print(set1.isdisjoint(set3))  # Output: True
+
+Set Methods:
+
+1. copy() - creates a copy
+original = {1, 2, 3}
+copy_set = original.copy()
+
+2. len() - get number of items
+fruits = {"apple", "banana", "cherry"}
+print(len(fruits))  # Output: 3
+
+Iterating Through Sets:
+fruits = {"apple", "banana", "cherry"}
+
+for fruit in fruits:
+    print(fruit)
+
+# Note: Sets are unordered, so iteration order may vary
+
+Checking Membership:
+fruits = {"apple", "banana", "cherry"}
+print("banana" in fruits)     # Output: True
+print("grape" not in fruits)  # Output: True
+
+Common Set Use Cases:
+
+1. Remove duplicates from a list:
+numbers = [1, 2, 2, 3, 3, 4, 5, 5]
+unique = list(set(numbers))
+print(unique)  # Output: [1, 2, 3, 4, 5]
+
+2. Find common elements:
+list1 = [1, 2, 3, 4, 5]
+list2 = [4, 5, 6, 7, 8]
+common = set(list1) & set(list2)
+print(common)  # Output: {4, 5}
+
+3. Find unique elements in each list:
+unique_to_list1 = set(list1) - set(list2)
+unique_to_list2 = set(list2) - set(list1)
+print(unique_to_list1)  # Output: {1, 2, 3}
+print(unique_to_list2)  # Output: {6, 7, 8}
+
+Frozen Sets:
+Immutable version of sets that can be used as dictionary keys.
+
+frozen = frozenset([1, 2, 3, 4])
+print(frozen)  # Output: frozenset({1, 2, 3, 4})
+
+# Can be used as dictionary keys
+dict_with_frozenset = {frozen: "some value"}
+
+TUPLES vs LISTS vs SETS:
+
+Tuples:
+- Ordered, unchangeable, allow duplicates
+- Use parentheses ()
+- Immutable (hashable, can be dict keys)
+- Good for fixed data like coordinates
+
+Lists:
+- Ordered, changeable, allow duplicates  
+- Use square brackets []
+- Mutable (not hashable)
+- Good for collections that need to change
+
+Sets:
+- Unordered, changeable items, no duplicates
+- Use curly braces {}
+- Items must be immutable
+- Good for unique collections and set operations
+
+Best Practices:
+1. Use tuples for fixed collections of related data
+2. Use sets when you need unique items or set operations
+3. Remember that sets are unordered
+4. Use tuple unpacking for cleaner code
+5. Consider frozen sets when you need immutable sets
+6. Use sets to remove duplicates efficiently

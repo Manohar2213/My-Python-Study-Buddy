@@ -1,0 +1,374 @@
+Python Conditional Statements
+
+Conditional statements allow you to execute different blocks of code based on certain conditions. Python uses if, elif, and else statements for decision-making.
+
+Basic if Statement:
+The if statement executes code only when a condition is True.
+
+Syntax:
+if condition:
+    # code to execute if condition is True
+
+Examples:
+age = 18
+if age >= 18:
+    print("You are an adult")
+
+temperature = 25
+if temperature > 30:
+    print("It's hot today!")
+
+# With variables
+score = 85
+if score >= 60:
+    print("You passed!")
+
+if-else Statement:
+The else statement provides an alternative when the if condition is False.
+
+Syntax:
+if condition:
+    # code if condition is True
+else:
+    # code if condition is False
+
+Examples:
+age = 16
+if age >= 18:
+    print("You can vote")
+else:
+    print("You cannot vote yet")
+
+number = 7
+if number % 2 == 0:
+    print("Even number")
+else:
+    print("Odd number")
+
+# Multiple conditions
+password = "secret123"
+if len(password) >= 8:
+    print("Strong password")
+else:
+    print("Password too short")
+
+if-elif-else Statement:
+Use elif (else if) to check multiple conditions.
+
+Syntax:
+if condition1:
+    # code if condition1 is True
+elif condition2:
+    # code if condition2 is True
+elif condition3:
+    # code if condition3 is True
+else:
+    # code if none of the conditions are True
+
+Examples:
+grade = 85
+if grade >= 90:
+    print("A grade")
+elif grade >= 80:
+    print("B grade")
+elif grade >= 70:
+    print("C grade")
+elif grade >= 60:
+    print("D grade")
+else:
+    print("F grade")
+
+# Weather example
+temperature = 22
+if temperature > 30:
+    print("It's hot")
+elif temperature > 20:
+    print("It's warm")
+elif temperature > 10:
+    print("It's cool")
+else:
+    print("It's cold")
+
+# Multiple elif statements
+day = "Monday"
+if day == "Monday":
+    print("Start of work week")
+elif day == "Friday":
+    print("TGIF!")
+elif day == "Saturday" or day == "Sunday":
+    print("Weekend!")
+else:
+    print("Regular weekday")
+
+Comparison Operators:
+Used in conditional statements to compare values.
+
+== (equal to)
+!= (not equal to)
+< (less than)
+> (greater than)
+<= (less than or equal to)
+>= (greater than or equal to)
+
+Examples:
+x = 10
+y = 20
+
+print(x == y)  # Output: False
+print(x != y)  # Output: True
+print(x < y)   # Output: True
+print(x > y)   # Output: False
+print(x <= 10) # Output: True
+print(y >= 20) # Output: True
+
+Logical Operators:
+Combine multiple conditions.
+
+and - both conditions must be True
+or - at least one condition must be True
+not - reverses the condition
+
+Examples:
+age = 25
+income = 50000
+
+# and operator
+if age >= 18 and income >= 30000:
+    print("Eligible for loan")
+
+# or operator
+if age < 18 or age > 65:
+    print("Special discount available")
+
+# not operator
+is_student = False
+if not is_student:
+    print("Regular pricing applies")
+
+# Complex conditions
+temperature = 25
+humidity = 70
+if temperature > 20 and temperature < 30 and humidity < 80:
+    print("Perfect weather!")
+
+Membership Operators:
+Check if a value exists in a sequence.
+
+in - True if value is found in sequence
+not in - True if value is not found in sequence
+
+Examples:
+fruits = ["apple", "banana", "cherry"]
+if "apple" in fruits:
+    print("Apple is available")
+
+if "grape" not in fruits:
+    print("Grape is not available")
+
+# With strings
+text = "Hello World"
+if "World" in text:
+    print("Found 'World' in text")
+
+# With numbers
+numbers = [1, 2, 3, 4, 5]
+if 3 in numbers:
+    print("3 is in the list")
+
+Nested if Statements:
+You can put if statements inside other if statements.
+
+Examples:
+age = 25
+has_license = True
+has_car = True
+
+if age >= 18:
+    print("You are an adult")
+    if has_license:
+        print("You can drive")
+        if has_car:
+            print("You can drive your own car")
+        else:
+            print("You need to borrow or rent a car")
+    else:
+        print("You need to get a license first")
+else:
+    print("You are too young to drive")
+
+# Grade and attendance example
+grade = 85
+attendance = 95
+
+if grade >= 60:
+    print("You passed")
+    if attendance >= 80:
+        print("Good attendance")
+        if grade >= 90 and attendance >= 95:
+            print("Excellent performance!")
+    else:
+        print("Poor attendance")
+else:
+    print("You failed")
+
+Conditional Expressions (Ternary Operator):
+A shorthand way to write simple if-else statements.
+
+Syntax:
+value_if_true if condition else value_if_false
+
+Examples:
+age = 20
+status = "adult" if age >= 18 else "minor"
+print(status)  # Output: adult
+
+# With numbers
+x = 10
+y = 5
+max_value = x if x > y else y
+print(max_value)  # Output: 10
+
+# In function calls
+score = 75
+print("Pass" if score >= 60 else "Fail")  # Output: Pass
+
+# Multiple conditions
+temperature = 25
+weather = "hot" if temperature > 30 else "warm" if temperature > 20 else "cold"
+print(weather)  # Output: warm
+
+Common Patterns and Best Practices:
+
+1. Checking for None:
+value = None
+if value is not None:
+    print("Value exists")
+
+# Better than using ==
+if value is None:
+    print("No value")
+
+2. Checking empty collections:
+my_list = []
+if my_list:  # Pythonic way
+    print("List has items")
+else:
+    print("List is empty")
+
+# Instead of len(my_list) > 0
+
+3. Multiple conditions with all() and any():
+grades = [85, 90, 78, 92]
+
+# Check if all grades are passing
+if all(grade >= 60 for grade in grades):
+    print("All subjects passed")
+
+# Check if any grade is excellent
+if any(grade >= 90 for grade in grades):
+    print("At least one excellent grade")
+
+4. Using in for multiple comparisons:
+day = "Saturday"
+if day in ["Saturday", "Sunday"]:
+    print("It's weekend!")
+
+# Better than: if day == "Saturday" or day == "Sunday":
+
+Common Mistakes to Avoid:
+
+1. Assignment vs Comparison:
+x = 5
+if x = 5:  # Wrong! This is assignment
+    print("x is 5")
+
+if x == 5:  # Correct! This is comparison
+    print("x is 5")
+
+2. Floating point comparison:
+# Avoid direct equality with floats
+x = 0.1 + 0.2
+if x == 0.3:  # May not work due to floating point precision
+    print("Equal")
+
+# Better approach
+if abs(x - 0.3) < 0.0001:
+    print("Close enough")
+
+3. Boolean comparison:
+is_valid = True
+if is_valid == True:  # Unnecessary
+    print("Valid")
+
+if is_valid:  # Better
+    print("Valid")
+
+4. Redundant conditions:
+age = 25
+if age >= 18:
+    if age >= 21:  # This could be elif
+        print("Can drink alcohol")
+    else:
+        print("Can vote but not drink")
+else:
+    print("Too young")
+
+# Better structure
+if age >= 21:
+    print("Can drink alcohol")
+elif age >= 18:
+    print("Can vote but not drink")
+else:
+    print("Too young")
+
+Real-world Examples:
+
+1. User authentication:
+username = "admin"
+password = "secret"
+
+if username == "admin" and password == "secret":
+    print("Login successful")
+elif username == "admin":
+    print("Incorrect password")
+else:
+    print("User not found")
+
+2. Grade calculator:
+def calculate_grade(score):
+    if score >= 90:
+        return "A"
+    elif score >= 80:
+        return "B"
+    elif score >= 70:
+        return "C"
+    elif score >= 60:
+        return "D"
+    else:
+        return "F"
+
+3. Discount calculator:
+def calculate_discount(amount, is_member, age):
+    discount = 0
+    
+    if is_member:
+        discount += 10
+    
+    if age >= 65:
+        discount += 5
+    elif age < 18:
+        discount += 3
+    
+    if amount > 100:
+        discount += 2
+    
+    return min(discount, 20)  # Maximum 20% discount
+
+Best Practices:
+1. Use meaningful condition names
+2. Keep conditions simple and readable
+3. Use parentheses to clarify complex conditions
+4. Consider using functions for complex condition logic
+5. Use elif instead of multiple separate if statements when appropriate
+6. Use is and is not for comparing with None, True, False
+7. Take advantage of Python's truthiness for cleaner code
